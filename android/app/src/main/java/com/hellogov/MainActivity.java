@@ -1,6 +1,7 @@
 package com.hellogov;
 
 import com.facebook.react.ReactActivity;
+import com.rogchap.react.modules.twilio.TwilioPackage;
 
 public class MainActivity extends ReactActivity {
 
