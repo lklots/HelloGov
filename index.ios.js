@@ -27,6 +27,8 @@ export default class HelloGov extends Component {
   _route(route, navigator) {
     if(route.id == 'issues') {
       return (<ListIssue navigator={navigator} />);
+    } else if (route.id == 'minority') {
+      return (<Text>Hellow World</Text>);
     } else {
       return (<Info />);
     }

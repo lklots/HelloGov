@@ -6,6 +6,7 @@ import {
   View,
   TextInput,
   Button,
+  TouchableHighlight,
 } from 'react-native';
 import { issues } from './helpers';
 
@@ -22,17 +23,17 @@ export default class ListIssue extends Component {
         <Text style={styles.title}>Important Topics</Text>
         <Text style={styles.subtitle}>Click on an Issue to see current bills</Text>
       {
-        issues.map(x => this.renderIssue(x.title))
+        issues.map(x => this.renderIssue(x))
       }
       </View>
     );
   }
 
-  renderIssue(name) {
+  renderIssue(issue) {
     return (
-      <View key={name} style={styles.item} onPress={() => {this.props.navigator.push()}}>
-        <Text style={styles.name}>{name}</Text>
-      </View>
+      <TouchableHighlight key={issue.id} style={styles.item} onPress={() => {this.props.navigator.push(issue)}}>
+        <Text style={styles.name}>{issue.title}</Text>
+      </TouchableHighlight>
     );
   }
 }
