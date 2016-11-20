@@ -7,6 +7,7 @@ import {
   TextInput,
   Button,
 } from 'react-native';
+import { issues } from './helpers';
 
 export default class ListIssue extends Component {
 
@@ -21,7 +22,7 @@ export default class ListIssue extends Component {
         <Text style={styles.title}>Important Topics</Text>
         <Text style={styles.subtitle}>Click on an Issue to see current bills</Text>
       {
-        ['Minority Issues', 'Conflict of Interest', 'Food and Nutrition'].map(x => this.renderIssue(x))
+        issues.map(x => this.renderIssue(x.title))
       }
       </View>
     );
@@ -29,7 +30,7 @@ export default class ListIssue extends Component {
 
   renderIssue(name) {
     return (
-      <View key={name} style={styles.item}>
+      <View key={name} style={styles.item} onPress={() => {this.props.navigator.push()}}>
         <Text style={styles.name}>{name}</Text>
       </View>
     );

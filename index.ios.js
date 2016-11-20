@@ -12,6 +12,7 @@ import {
   View,
   TextInput,
   Button,
+  Navigator,
 } from 'react-native';
 import ListIssue from './ListIssue';
 import TitleBar from './TitleBar';
@@ -23,11 +24,24 @@ export default class HelloGov extends Component {
     this.state = {};
   }
 
+  _route(route, navigator) {
+    if(route.id == 'issues') {
+      return (<ListIssue navigator={navigator} />);
+    } else {
+      return (<Info />);
+    }
+  }
   render() {
+    const routes = [
+      {id: 'issues'},
+    ];
     return (
       <View style={styles.container}>
         <TitleBar />
-        <ListIssue />
+        <Navigator
+          initialRoute={routes[0]}
+          renderScene={this._route}
+        />
       </View>
     );
   }
