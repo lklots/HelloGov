@@ -12,7 +12,7 @@ import {
   View,
   TextInput,
   Button,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import ListIssue from './ListIssue';
 
@@ -25,11 +25,11 @@ export default class TitleBar extends Component {
 
   back() {
     return (
-      <TouchableHighlight style={styles.back} onPress={this.props.onBack}>
+      <TouchableOpacity style={styles.back} onPress={this.props.onBack}>
         <Text style={styles.backText}>
           Back
         </Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
     );
   }
 
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   back: {
     flex: 1,
     marginLeft: 10,
+
   },
   backText: {
     color: '#3A7F8E',
