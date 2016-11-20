@@ -16,6 +16,8 @@ import {
 } from 'react-native';
 import ListIssue from './ListIssue';
 import TitleBar from './TitleBar';
+import { issues } from './helpers';
+import Issue from './Issue';
 
 export default class HelloGov extends Component {
 
@@ -27,10 +29,8 @@ export default class HelloGov extends Component {
   _route(route, navigator) {
     if(route.id == 'issues') {
       return (<ListIssue navigator={navigator} />);
-    } else if (route.id == 'minority') {
-      return (<Text>Hellow World</Text>);
     } else {
-      return (<Info />);
+      return (<Issue issue={route} />);
     }
   }
   render() {
