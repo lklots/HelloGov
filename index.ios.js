@@ -39,8 +39,9 @@ export default class HelloGov extends Component {
     ];
     return (
       <View style={styles.container}>
-        <TitleBar />
+        <TitleBar onBack={() => this.refs.navigator.pop()} />
         <Navigator
+          ref='navigator'
           initialRoute={routes[0]}
           renderScene={this._route}
         />
@@ -53,16 +54,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
 

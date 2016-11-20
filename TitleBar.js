@@ -12,21 +12,36 @@ import {
   View,
   TextInput,
   Button,
+  TouchableHighlight,
 } from 'react-native';
 import ListIssue from './ListIssue';
 
-export default class HelloGov extends Component {
+export default class TitleBar extends Component {
 
   constructor() {
     super();
     this.state = {};
   }
 
+  back() {
+    return (
+      <TouchableHighlight style={styles.back} onPress={this.props.onBack}>
+        <Text style={styles.backText}>
+          Back
+        </Text>
+      </TouchableHighlight>
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.circle}/>
-        <Text style={styles.title}>HELLOGOV!</Text>
+        <View style={styles.left}>{this.back()}</View>
+        <View style={styles.center}>
+          <Text style={styles.title}>helloGOV!</Text>
+        </View>
+        <View style={styles.right}>
+        </View>
       </View>
     );
   }
@@ -40,16 +55,31 @@ const styles = StyleSheet.create({
     backgroundColor: '#F4BF37',
     flexDirection: 'row',
   },
+  left: {
+    flex:1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  center: {
+    flex:1,
+    justifyContent: 'center',
+  },
+  right: {
+    flex: 1,
+  },
+  back: {
+    flex: 1,
+    marginLeft: 10,
+  },
+  backText: {
+    color: '#3A7F8E',
+    fontWeight: 'bold',
+  },
   title: {
+    justifyContent: 'center',
     color: '#47919F',
     fontSize: 20,
     textAlign: 'center',
-  },
-  circle: {
-    width: 50,
-    height: 50,
-    borderRadius: 50/2,
-    backgroundColor: '#47919F',
   },
 });
 
