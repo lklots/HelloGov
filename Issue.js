@@ -14,6 +14,7 @@ import {
   Button,
   Navigator,
   TouchableHighlight,
+  Linking,
 } from 'react-native';
 import ListIssue from './ListIssue';
 import TitleBar from './TitleBar';
@@ -32,7 +33,11 @@ export default class Issue extends Component {
         </View>
         <View style={styles.action}>
           <TouchableHighlight style={styles.button}><Text style={styles.buttonText}>{"Let's do this!"}</Text></TouchableHighlight>
-          <Text style={styles.infoText}>I need more info</Text>
+          <TouchableHighlight style={styles.moreInfo} onPress={() => Linking.openURL(this.props.issue.url)}>
+            <Text style={styles.infoText}>
+              I need more info
+            </Text>
+          </TouchableHighlight>
         </View>
       </View>
     );
@@ -105,6 +110,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  moreInfo: {
+
   },
 });
 
