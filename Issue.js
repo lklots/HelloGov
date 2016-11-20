@@ -17,6 +17,8 @@ import {
 } from 'react-native';
 import ListIssue from './ListIssue';
 import TitleBar from './TitleBar';
+import Twilio from 'react-native-twilio';
+
 
 export default class Issue extends Component {
 
@@ -31,11 +33,27 @@ export default class Issue extends Component {
           <Text style={styles.summaryText}>{this.props.issue.summary.join(' ')}</Text>
         </View>
         <View style={styles.action}>
-          <TouchableHighlight style={styles.button}><Text style={styles.buttonText}>{"Let's do this!"}</Text></TouchableHighlight>
+          <TouchableHighlight style={styles.button} onPress={() => this.call()}><Text style={styles.buttonText}>{"Let's do this!"}</Text></TouchableHighlight>
           <Text style={styles.infoText}>I need more info</Text>
         </View>
       </View>
     );
+  }
+
+  call() {
+    Twilio.initWithTokenUrl('https://hellogov.herokuapp.com/token?allowOutgoing=true');
+    Twilio.connect({To: '+16506655061', From: '+16505217351', Url:'https://demo.twilio.com/docs/voice.xml'});
+    Twilio.addEventListener('deviceDidStartListening', this._debug);
+    Twilio.addEventListener('deviceDidStopListening', this._debug);
+    Twilio.addEventListener('deviceDidReceiveIncoming', this._debug);
+    Twilio.addEventListener('connectionDidStartConnecting', this._debug);
+    Twilio.addEventListener('connectionDidConnect', this._debug);
+    Twilio.addEventListener('connectionDidDisconnect', this._debug);
+    Twilio.addEventListener('connectionDidFail', this._debug);
+  }
+
+  _debug(params) {
+    console.log(params);
   }
 
   _billCode(bill) {
